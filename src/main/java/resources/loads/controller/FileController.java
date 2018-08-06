@@ -25,6 +25,7 @@ public class FileController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileController.class);
 	private static String IMAGES_STORE_PATH;
 	private static String PART;
+	private static String STATIC_RESOURCES_PATH;
 
 	static {
 		File file = new File("config/application.conf");
@@ -32,6 +33,7 @@ public class FileController {
 		Config config = root.getConfig("config");
 		IMAGES_STORE_PATH = config.getString("images.store.path");
 		PART = config.getString("upload.part");
+		STATIC_RESOURCES_PATH = config.getString("static.resource.path");
 	}
 
 	public void init() {
@@ -46,6 +48,7 @@ public class FileController {
 
 			JSONObject result = new JSONObject();
 			result.put("filePath", filePath);
+			result.put("suffix", filePath.replace(STATIC_RESOURCES_PATH, "").replace("\\", "/"));
 
 			try {
 				try (InputStream input = req.raw().getPart(PART).getInputStream()) { // getPart needs to use same

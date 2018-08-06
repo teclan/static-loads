@@ -34,5 +34,24 @@ images.store.path="E:\\static\\images"
 }
 ```
 
-例如以上配置，上传一张名为 `test.jpg` 的图片，图片将被存到 `E:\\static\\images\test.jpg`(替换同名文件),
-要访问这种图片资源，访问 `http://10.0.0.134:9090/images/test.jpg`。
+## 上传图片接口
+
+```
+POST http://10.0.0.134:9090/upload/images
+
+上传文件表单字段为配置 upload.part指定，其他参数不需要。
+```
+
+图片成功存储，返回：
+
+```
+{ "code":"200",
+  "massage":"上传成功",
+  "filePath":"E:\\static\\images\\TIM图片20180615105015.jpg",
+  "suffix":"/images/TIM图片20180615105015.jpg"
+ }
+```
+
+例如以上配置，上传一张名为 `test.jpg` 的图片，图片将被存到 `E:\\static\\images\TIM图片20180615105015.jpg`(替换同名文件),
+要访问这种图片资源，访问 `http://10.0.0.134:9090/images/TIM图片20180615105015.jpg`。
+
